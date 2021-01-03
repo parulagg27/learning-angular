@@ -4,23 +4,18 @@ import { Component, OnInit } from '@angular/core';
   selector: '[app-test]',
   template: `
     <h2>Welcome to {{name}}</h2>
-
-    <button (click)="onClick()">Event Binding with Event Handler</button>
-
-    <button (click)="greeting='Welcome Parul'">Greet User on Page</button>
-    {{greeting}}
-
+    <input type="text" #userInput>
+    <button (click)="onClick(userInput.value)">Submit</button>
   `,
   styles: []
 })
 export class TestComponent implements OnInit {
   name = "Codevolution";
-  greeting = "";
 
   constructor() { }
 
-  onClick(){
-    console.log("Welcome to Angular Tutorial")
+  onClick(value){
+    console.log(value);
   }
 
   ngOnInit(): void {
