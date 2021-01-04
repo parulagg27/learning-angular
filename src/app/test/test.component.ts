@@ -3,16 +3,17 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: '[app-test]',
   template: `
-    <div [ngSwitch]="color">
-      <div *ngSwitchCase="'red'">You picked red color</div>
-      <div *ngSwitchCase="'blue'">You picked blue color</div>
-      <div *ngSwitchCase="'orange'">You picked orange color</div>
-      <div *ngSwitchDefault>Try Again!</div>
+    <div *ngFor="let colour of colors; index as i; first as f; last as l, even as e, odd as o">
+      <p>
+        {{i}}. {{colour}}, First: {{f}}, Last: {{l}},
+        Even: {{e}},
+        Odd: {{o}}
+      </p>
     </div>
   `,
 })
 export class TestComponent implements OnInit {
-  color = "orange";
+  colors: string[] = ["red", "orange", "blue"];
 
   ngOnInit(): void {
   }
