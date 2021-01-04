@@ -3,28 +3,16 @@ import {Component, OnInit} from '@angular/core';
 @Component({
   selector: '[app-test]',
   template: `
-    <!--    <h1 *ngIf="toBeDisplayed; else elseBlock">Codevolution</h1>-->
-
-    <!--    <ng-template #elseBlock>-->
-    <!--      <h2>Hidden first Element</h2>-->
-    <!--    </ng-template>-->
-    <div *ngIf="toBeDisplayed; then thenBlock; else elseBlock"></div>
-
-    <ng-template #thenBlock>
-      <h2>First Block</h2>
-    </ng-template>
-    <ng-template #elseBlock>
-      <h2>Second Block</h2>
-    </ng-template>
-
+    <div [ngSwitch]="color">
+      <div *ngSwitchCase="'red'">You picked red color</div>
+      <div *ngSwitchCase="'blue'">You picked blue color</div>
+      <div *ngSwitchCase="'orange'">You picked orange color</div>
+      <div *ngSwitchDefault>Try Again!</div>
+    </div>
   `,
-  styles: []
 })
 export class TestComponent implements OnInit {
-  toBeDisplayed = true;
-
-  constructor() {
-  }
+  color = "orange";
 
   ngOnInit(): void {
   }
