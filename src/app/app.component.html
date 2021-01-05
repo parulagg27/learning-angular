@@ -6,9 +6,9 @@
 <body>
 <div style="text-align:center">
   <h1>
-    Welcome to Codevolution!
+    {{childMessage}}
   </h1>
-  <app-test [name]="username"></app-test>
+  <app-test (childEvent)="childMessage=$event" [name]="username"></app-test>
 </div>
 
 </body>
