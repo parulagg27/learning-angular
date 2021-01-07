@@ -1,22 +1,25 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {IEmployees} from './employees';
-import {Observable} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
-  private _url = "/assets/data/employees.json";
+  private _url = '/assets/data/employees.json';
 
   constructor(private http: HttpClient) {
   }
 
   getEmployees(): Observable<IEmployees[]> {
-    //casted an observable here into an employee array
-    return this.http.get<IEmployees[]>(this._url);
+    return this.http.get<IEmployees[]>(this._url)
+      .pipe(catchError(this.errorHandler));
+  }
 
-    //but observable doesn't return data unless someone subscribes to it
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error.message || 'Server Error');
   }
 }
